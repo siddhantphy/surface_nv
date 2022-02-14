@@ -1,0 +1,62 @@
+# NOTE: The `bright_state_param` values in this file were chosen arbitrarily as an example. They may not result in the best possible performance.
+
+network: two_connected_nvs
+
+nv_params: &nv_params
+  INCLUDE: !include nv_baseline_params.yaml
+ 
+node_type: &node_type
+  type: nv_node
+
+components:
+
+  start_node:
+    <<: *node_type
+    properties:
+      end_node: True
+      num_positions: 3
+      port_names:
+        - B
+        - ENT_B
+      bright_state_param: 
+        ENT_B: 0.1    
+      <<: *nv_params
+
+  ent_connection_1:
+    type: mid_heralded_connection
+    properties:
+      length: 1. 
+      p_loss_length: 0.2
+      distributor: single_click_nv
+      <<: *nv_params
+
+    connect_to:
+      node1: start_node
+      node2: end_node
+      port_name_node1: ENT_B
+      port_name_node2: ENT_A
+      label: entanglement_connection
+
+  cl_connection_1:
+    type: classical_connection
+    properties:
+      length: 1.
+    connect_to:
+      node1: start_node
+      node2: end_node
+      port_name_node1: B
+      port_name_node2: A
+      label: classical_connection
+
+  end_node:
+    <<: *node_type
+    properties:
+      num_positions: 2
+      end_node: True
+      port_names:
+        - A
+        - ENT_A
+      bright_state_param: 
+        ENT_A: 0.15    
+      <<: *nv_params
+
