@@ -1,3 +1,7 @@
 1) Object dictionary:
-{'components': {'start_node': NVNode(name='start_node'), 'ent_connection_1': MiddleHeraldedConnection(name='ent_connection_1'), 'cl_connection_1': ClassicalConnectionWithLength(name='cl_connection_1'), 'end_node': NVNode(name='end_node')}, 'network': Network(name='two_connected_nvs')} 
+    {'components': {'start_node': NVNode(name='start_node'), 'ent_connection_1': MiddleHeraldedConnection(name='ent_connection_1'), 'cl_connection_1': ClassicalConnectionWithLength(name='cl_connection_1'), 'end_node': NVNode(name='end_node')}, 'network': Network(name='two_connected_nvs')} 
 
+2)  Command to run the simulation:
+    python3 simulation_script.py two_node_nv_config.yaml
+
+3) 
